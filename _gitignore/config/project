@@ -1,0 +1,9 @@
+readonly __project_name="project-name"
+readonly __test_coverage_threshold=0
+
+readonly __web_root="/var/www"
+readonly __log_root="/var/log"
+readonly __nginx_sites_available="/etc/nginx/sites-available"
+readonly __nginx_sites_enabled="/etc/nginx/sites-enabled"
+readonly __nginx_includes="/etc/nginx/includes"
+readonly __nginx_root_directories="${__nginx_includes}/root_directories"

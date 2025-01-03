@@ -1,0 +1,44 @@
+[program:project-name-staging-reverb]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/project-name/staging/current/artisan reverb:start
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/log/project-name/staging/reverb.out.log
+stderr_logfile=/var/log/project-name/staging/reverb.err.log
+stopwaitsecs=3600
+
+[program:get-ai-image]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/project-name/staging/current/artisan queue:work --queue=default,get-ai-image --sleep=3 --tries=3 --timeout=300 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=3
+redirect_stderr=true
+stdout_logfile=/var/log/project-name/production/worker-get-ai-image.out.log
+stderr_logfile=/var/log/project-name/production/worker-get-ai-image.err.log
+stopwaitsecs=3600
+
+[program:update-ui]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/project-name/staging/current/artisan queue:work --queue=update-ui --sleep=3 --tries=3 --timeout=20 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=3
+redirect_stderr=true
+stdout_logfile=/var/log/project-name/production/worker-update-ui.out.log
+stderr_logfile=/var/log/project-name/production/worker-update-ui.err.log
+stopwaitsecs=3600
+
+[group:project-name-staging-worker]
+programs=get-ai-image,update-ui
