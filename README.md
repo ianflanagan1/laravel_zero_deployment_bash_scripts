@@ -1,6 +1,6 @@
 # Laravel Zero-Deployment Bash Scripts
 
-A collection of Bash script for setup and zero-downtime deployment of a Laravel project with Queue workers and Jenkins CI server. Includes shared boilerplate and unit tests
+A collection of Bash scripts for setup and zero-downtime deployment of a Laravel project with Queue workers and Jenkins CI server. Includes shared boilerplate and unit tests
 
 ## Boilerplate
 ### Features
